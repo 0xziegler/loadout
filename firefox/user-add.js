@@ -65,5 +65,9 @@ user_pref("lightweightThemes.selectedThemeID", "{08d5243b-4236-4a27-984b-1ded22c
 //sidebar: vertical tabs
 user_pref("sidebar.revamp", true);
 user_pref("sidebar.verticalTabs", true);
-//visible sidebar on startup
 user_pref("sidebar.visibility", "always");
+user_pref("browser.tabs.drawInTitlebar", true);
+user_pref("sidebar.position_start", true);
+user_pref("browser.tabs.onTop", false);
+user_pref("browser.tabs.inTitlebar", 0);
+user_pref("browser.uidensity", 1);

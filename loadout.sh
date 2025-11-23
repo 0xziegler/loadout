@@ -66,6 +66,8 @@ gsettings set "$base_path" background-color '#1D1F21' >/dev/null 2>&1
 gsettings set "$base_path" foreground-color '#C5C8C6' >/dev/null 2>&1
 gsettings set "$base_path" palette "['#000000', '#DC322F', '#859900', '#B58900', '#268BD2', '#D33682', '#2AA198', '#EEE8D5', '#002B36', '#CB4B16', '#586E75', '#657B83', '#839496', '#6C71C4', '#93A1A1', '#FDF6E3']" >/dev/null 2>&1
 gsettings set "$base_path" use-theme-transparency false >/dev/null 2>&1
+gsettings set "$base_path" use-custom-command true
+gsettings set "$base_path" custom-command "bash"
 
 curl -L -s -o $HOME/blur-my-shell.zip https://extensions.gnome.org/extension-data/blur-my-shellaunetx.v42.shell-extension.zip
 rm -rf $HOME/.local/share/gnome-shell/extensions/blur-my-shell@aunetx
@@ -125,6 +127,7 @@ append_source_if_missing() {
   fi
 }
 
+touch "$HOME/.bashrc"
 append_source_if_missing "$HOME/.bashrc"
 
 #remove any line starting with 'PS1=' first
