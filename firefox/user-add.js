@@ -71,3 +71,13 @@ user_pref("sidebar.position_start", true);
 user_pref("browser.tabs.onTop", false);
 user_pref("browser.tabs.inTitlebar", 0);
 user_pref("browser.uidensity", 1);
+//no signin
+user_pref("identity.fxaccounts.enabled", false);
+user_pref("browser.aboutwelcome.enabled", false);
+user_pref("browser.newtabpage.activity-stream.showSponsoredTopSite", false);
+//no askin for save pw
+user_pref("signon.rememberSignons", false);
+user_pref("signon.autofillForms", false);
+user_pref("signon.formlessCapture.enabled", false);
+user_pref("signon.storeWhenAutocompleteOff", false);
+user_pref("signon.management.page.breach-alerts.enabled", false);
