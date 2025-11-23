@@ -45,6 +45,9 @@ if [ -x /usr/bin/dircolors ]; then
     # Show lines added/removed in a file with color
     alias diffc='diff --color=auto'
 
+    #intelliJidea
+    alias idea="$HOME/ideaIC/bin/idea.sh"
+
 fi
 
 push() {
@@ -100,6 +103,11 @@ tree_clean() {
 
 code() {
   command /usr/bin/code "$@"
-  #once it returns -> exit
   exit
+}
+
+idea() {
+    nohup "$HOME/ideaIC/bin/idea.sh" "$@" >/dev/null 2>&1 &
+    disown
+    exit
 }
