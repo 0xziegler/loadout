@@ -198,7 +198,7 @@ mv ublock_origin.xpi "$PROFILE_DIR/extensions/uBlock0@raymondhill.net.xpi"
 wget -q "https://addons.mozilla.org/firefox/downloads/file/3729287/gruvboxgruvboxgruvboxgruvboxgr-1.0.xpi" -O "$PROFILE_DIR/extensions/{08d5243b-4236-4a27-984b-1ded22ce01c3}.xpi"
 # mv gruvbox@theme.xpi "$PROFILE_DIR/extensions"
 
-firefox "https://github.com/login" "https://auth.openai.com/" "https://www.discord.com/login" >/dev/null 2>&1 &
+firefox "https://zone01normandie.org/api/content/root/01-edu_module/content/01blog/README.md" "https://github.com/login" "https://www.discord.com/login" >/dev/null 2>&1 &
 
 #apply lazyvim
 echo "deploying lazyvim..."
