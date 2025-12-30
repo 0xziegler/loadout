@@ -169,9 +169,20 @@ firefox --headless 1 >/dev/null &>2 &
 sleep 1
 pkill firefox
 git clone https://github.com/arkenfox/user.js.git $HOME/user.js >/dev/null 2>&1
-PROFILE_DIR="$HOME/snap/firefox/common/.mozilla/firefox/$(grep -m 1 Path $HOME/snap/firefox/common/.mozilla/firefox/profiles.ini | cut -d'=' -f2)"
-cp $HOME/user.js/user.js "$PROFILE_DIR/user.js"
-cat $HOME/loadout/firefox/user-add.js >> "$PROFILE_DIR/user.js"
+
+if snap list firefox >/dev/null 2>&1; then
+  PROFILE_DIR="$HOME/snap/firefox/common/.mozilla/firefox/$(grep -m 1 Path $HOME/snap/firefox/common/.mozilla/firefox/profiles.ini | cut -d'=' -f2)"
+  cp $HOME/user.js/user.js "$PROFILE_DIR/user.js"
+  cat $HOME/loadout/firefox/user-add.js >> "$PROFILE_DIR/user.js"
+fi
+
+if dpkg -l firefox >/dev/null 2>&1; then
+  PROFILE_DIR="$HOME/.mozilla/firefox/$(grep -m 1 Path $HOME/.mozilla/firefox/profiles.ini | cut -d'=' -f2)"
+  cp $HOME/user.js/user.js "$PROFILE_DIR/user.js"
+  cat $HOME/loadout/firefox/user-add.js >> "$PROFILE_DIR/user.js"
+else
+  echo "Err: firefox not installed via snap or APT"
+fi
 
 if [ "${1:-}" = "css" ]; then
   mkdir -p "$PROFILE_DIR/chrome"
