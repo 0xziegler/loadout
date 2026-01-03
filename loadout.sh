@@ -11,7 +11,7 @@ pkill -f gnome-initial-s >/dev/null 2>&1 || true
 pkill -f check-new-release-gtk >/dev/null 2>&1 || true
 
 #gnome settings
-echo "upgrading settings"
+echo "upgrading settings..."
 mkdir -p ~/.config/autostart
 cp /etc/xdg/autostart/update-notifier.desktop ~/.config/autostart/
 sed -i 's/^Exec=.*/Exec=/' ~/.config/autostart/update-notifier.desktop
@@ -66,8 +66,8 @@ gsettings set "$base_path" background-color '#1D1F21' >/dev/null 2>&1
 gsettings set "$base_path" foreground-color '#C5C8C6' >/dev/null 2>&1
 gsettings set "$base_path" palette "['#000000', '#DC322F', '#859900', '#B58900', '#268BD2', '#D33682', '#2AA198', '#EEE8D5', '#002B36', '#CB4B16', '#586E75', '#657B83', '#839496', '#6C71C4', '#93A1A1', '#FDF6E3']" >/dev/null 2>&1
 gsettings set "$base_path" use-theme-transparency false >/dev/null 2>&1
-gsettings set "$base_path" use-custom-command true
-gsettings set "$base_path" custom-command "bash"
+gsettings set "$base_path" use-custom-command true >/dev/null 2>&1
+gsettings set "$base_path" custom-command "bash" >/dev/null 2>&1
 
 curl -L -s -o $HOME/blur-my-shell.zip https://extensions.gnome.org/extension-data/blur-my-shellaunetx.v42.shell-extension.zip
 rm -rf $HOME/.local/share/gnome-shell/extensions/blur-my-shell@aunetx
