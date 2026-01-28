@@ -49,11 +49,12 @@ set updatetime=300            " Faster updates (good for plugins/signcolumn)
 
 " === Colors ===
 "colorscheme desert      " warm, earthy tones
-colorscheme evening     " cooler, softer tones
-colorscheme murphy      " greenish, clean
-colorscheme ron         " simple, dark
-colorscheme slate       " gray/blue dark
-colorscheme torte       " classic, slightly retro
+"colorscheme evening     " cooler, softer tones
+"colorscheme murphy      " greenish, clean
+"colorscheme ron         " simple, dark
+"colorscheme slate       " gray/blue dark
+"colorscheme torte       " classic, slightly retro
+colorscheme jellybeans
 
 
 " === Utilities ===

@@ -30,9 +30,9 @@
 
 2.
 ```bash
-sh loadout/loadout.bash
+sh loadout/loadout.sh
 ```
 Or (with custom firefox css)
 ```bash
-sh loadout/loadout.bash css
+sh loadout/loadout.sh css
 ```

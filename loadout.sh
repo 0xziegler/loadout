@@ -52,7 +52,6 @@ gsettings set org.gnome.login-screen disable-user-list true >/dev/null 2>&1
 gsettings set org.gnome.desktop.privacy remember-recent-files false >/dev/null 2>&1
 
 xdg-settings set default-web-browser firefox.desktop >/dev/null 2>&1
-cp $HOME/loadout/.vimrc $HOME/.vimrc
 
 #gnome-terminal
 profile_id=$(gsettings get org.gnome.Terminal.ProfilesList default 2>/dev/null | tr -d \')
@@ -105,8 +104,12 @@ DOTFILES_LOADER_PATH="$HOME/loadout"
 # clone dotfiles repo
 if [ ! -d "$DOTFILES_LOADER_PATH" ]; then
   echo "cloning loadout..."
-  git clone https://github.com/kofeeJuice/loadout.git "$DOTFILES_LOADER_PATH" >/dev/null 2>&1
+  git clone https://github.com/0xZiegler/loadout.git "$DOTFILES_LOADER_PATH" >/dev/null 2>&1
 fi
+
+mkdir -p "$HOME/.vim/pack/plugins/start"
+git clone https://github.com/nanotech/jellybeans.vim.git "$HOME/.vim/pack/plugins/start/jellybeans"
+cp $HOME/loadout/.vimrc $HOME/.vimrc
 
 #wallpaper
 wget -qO /tmp/wall.jpg https://ntbg.app/
