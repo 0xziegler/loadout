@@ -108,8 +108,13 @@ if [ ! -d "$DOTFILES_LOADER_PATH" ]; then
 fi
 
 mkdir -p "$HOME/.vim/pack/plugins/start"
-git clone https://github.com/nanotech/jellybeans.vim.git "$HOME/.vim/pack/plugins/start/jellybeans"
-cp $HOME/loadout/.vimrc $HOME/.vimrc
+DIR="$HOME/.vim/pack/plugins/start/jellybeans"
+if [ -d "$DIR" ]; then
+  cp $HOME/loadout/.vimrc $HOME/.vimrc
+else
+  git clone https://github.com/nanotech/jellybeans.vim.git "$DIR"
+  cp $HOME/loadout/.vimrc $HOME/.vimrc
+fi
 
 #wallpaper
 wget -qO /tmp/wall.jpg https://ntbg.app/
@@ -148,22 +153,22 @@ source $HOME/.bashrc
 # Apply settings.json to VSCode & extensions
 echo "vscode config..."
 pkill -f 'code' >/dev/null 2>&1 || true
-sleep 1 #wait a bit to ensure shutdown
+sleep 2
 VS_CODE_SETTINGS_FILE="${DOTFILES_LOADER_PATH}/vscode/settings.json"
 mkdir -p $HOME/.config/Code/User
 cat "${DOTFILES_LOADER_PATH}/vscode/keybindings.json" >>$HOME/.config/Code/User/keybindings.json
 cp "$VS_CODE_SETTINGS_FILE" "$HOME/.config/Code/User/settings.json"
 
-code --install-extension ritwickdey.LiveServer >/dev/null 2>&1 || true
-code --install-extension golang.Go >/dev/null 2>&1 || true
-code --install-extension PKief.material-product-icons >/dev/null 2>&1 || true
-code --install-extension yy0931.vscode-sqlite3-editor >/dev/null 2>&1 || true
-code --install-extension dbaeumer.vscode-eslint >/dev/null 2>&1 || true
-code --install-extension esbenp.prettier-vscode >/dev/null 2>&1 || true
-code --install-extension mhutchie.git-graph >/dev/null 2>&1 || true
-code --install-extension rust-lang.rust-analyzer >/dev/null 2>&1 || true
-code --install-extension tamasfe.even-better-toml >/dev/null 2>&1 || true
-code --install-extension vscodevim.vim >/dev/null 2>&1 || true
+code --install-extension ritwickdey.liveserver --force
+code --install-extension golang.go --force
+code --install-extension pkief.material-product-icons --force >/dev/null 2>&1
+code --install-extension yy0931.vscode-sqlite3-editor --force >/dev/null 2>&1
+code --install-extension dbaeumer.vscode-eslint >/dev/null 2>&1
+code --install-extension esbenp.prettier-vscode >/dev/null 2>&1
+code --install-extension mhutchie.git-graph >/dev/null 2>&1
+code --install-extension rust-lang.rust-analyzer >/dev/null 2>&1
+code --install-extension tamasfe.even-better-toml >/dev/null 2>&1
+code --install-extension vscodevim.vim >/dev/null 2>&1
 
 #firefox config
 echo "firefox config..."
@@ -198,7 +203,7 @@ fi
 mkdir -p "$PROFILE_DIR/extensions"
 wget -q https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi -O ublock_origin.xpi
 mv ublock_origin.xpi "$PROFILE_DIR/extensions/uBlock0@raymondhill.net.xpi"
-wget -q "https://addons.mozilla.org/firefox/downloads/file/3729287/gruvboxgruvboxgruvboxgruvboxgr-1.0.xpi" -O "$PROFILE_DIR/extensions/{08d5243b-4236-4a27-984b-1ded22ce01c3}.xpi"
+# wget -q "https://addons.mozilla.org/firefox/downloads/file/3729287/gruvboxgruvboxgruvboxgruvboxgr-1.0.xpi" -O "$PROFILE_DIR/extensions/{08d5243b-4236-4a27-984b-1ded22ce01c3}.xpi"
 # mv gruvbox@theme.xpi "$PROFILE_DIR/extensions"
 
 firefox "https://zone01normandie.org/api/content/root/01-edu_module/content/01blog/README.md" "https://github.com/login" "https://www.discord.com/login" >/dev/null 2>&1 &

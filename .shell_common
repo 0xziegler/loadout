@@ -101,10 +101,11 @@ tree_clean() {
 }
 
 
-code() {
-  command /usr/bin/code "$@"
-  exit
-}
+#interferes with code extension installation command
+# code() {
+#   command /usr/bin/code "$@"
+#   exit
+# }
 
 idea() {
     nohup "$HOME/ideaIC/bin/idea.sh" "$@" >/dev/null 2>&1 &
