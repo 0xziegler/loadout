@@ -159,16 +159,16 @@ mkdir -p $HOME/.config/Code/User
 cat "${DOTFILES_LOADER_PATH}/vscode/keybindings.json" >>$HOME/.config/Code/User/keybindings.json
 cp "$VS_CODE_SETTINGS_FILE" "$HOME/.config/Code/User/settings.json"
 
-code --install-extension ritwickdey.liveserver --force
-code --install-extension golang.go --force
+code --install-extension ritwickdey.liveserver --force >/dev/null 2>&1
+code --install-extension golang.go --force >/dev/null 2>&1
 code --install-extension pkief.material-product-icons --force >/dev/null 2>&1
 code --install-extension yy0931.vscode-sqlite3-editor --force >/dev/null 2>&1
-code --install-extension dbaeumer.vscode-eslint >/dev/null 2>&1
-code --install-extension esbenp.prettier-vscode >/dev/null 2>&1
-code --install-extension mhutchie.git-graph >/dev/null 2>&1
-code --install-extension rust-lang.rust-analyzer >/dev/null 2>&1
-code --install-extension tamasfe.even-better-toml >/dev/null 2>&1
-code --install-extension vscodevim.vim >/dev/null 2>&1
+code --install-extension dbaeumer.vscode-eslint --force >/dev/null 2>&1
+code --install-extension esbenp.prettier-vscode --force >/dev/null 2>&1
+code --install-extension mhutchie.git-graph --force >/dev/null 2>&1
+code --install-extension rust-lang.rust-analyzer --force >/dev/null 2>&1
+code --install-extension tamasfe.even-better-toml --force >/dev/null 2>&1
+code --install-extension vscodevim.vim --force >/dev/null 2>&1
 
 #firefox config
 echo "firefox config..."
@@ -208,9 +208,13 @@ mv ublock_origin.xpi "$PROFILE_DIR/extensions/uBlock0@raymondhill.net.xpi"
 
 firefox "https://zone01normandie.org/api/content/root/01-edu_module/content/01blog/README.md" "https://github.com/login" "https://www.discord.com/login" >/dev/null 2>&1 &
 
-#apply lazyvim
-echo "deploying lazyvim..."
-mkdir -p $HOME/.config/nvim
-cp -r "${DOTFILES_LOADER_PATH}/nvim" $HOME/.config/
+
+#neovim
+echo "nvim config..."
+if [ ! -d "$HOME/.config/nvim" ]; then
+  mkdir -p "$HOME/.config/nvim"
+  git clone --depth 1 https://github.com/AstroNvim/template "$HOME/.config/nvim" >/dev/null 2>&1
+  rm -rf ~/.config/nvim/.git
+fi
 
 echo "Done!"
