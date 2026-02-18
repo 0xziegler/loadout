@@ -18,8 +18,7 @@
 - gnome-terminal config
 - vim config
 - bash config
-- neovim config:
-   - loads [lazyvim](https://www.lazyvim.org/) with additional plugins
+- loads [astrovim](https://astronvim.com/) with additional plugins
 
 
 ## How to Apply
