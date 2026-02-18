@@ -180,17 +180,20 @@ git clone https://github.com/arkenfox/user.js.git $HOME/user.js >/dev/null 2>&1
 
 if snap list firefox >/dev/null 2>&1; then
   PROFILE_DIR="$HOME/snap/firefox/common/.mozilla/firefox/$(grep -m 1 Path $HOME/snap/firefox/common/.mozilla/firefox/profiles.ini | cut -d'=' -f2)"
-  cp $HOME/user.js/user.js "$PROFILE_DIR/user.js"
-  cat $HOME/loadout/firefox/user-add.js >> "$PROFILE_DIR/user.js"
-fi
-
-if dpkg -l firefox >/dev/null 2>&1; then
-  PROFILE_DIR="$HOME/.mozilla/firefox/$(grep -m 1 Path $HOME/.mozilla/firefox/profiles.ini | cut -d'=' -f2)"
-  cp $HOME/user.js/user.js "$PROFILE_DIR/user.js"
-  cat $HOME/loadout/firefox/user-add.js >> "$PROFILE_DIR/user.js"
+elif dpkg -l firefox >/dev/null 2>&1; then
+  if [ -d "$HOME/.mozilla/firefox" ]; then
+    PROFILE_DIR="$HOME/.mozilla/firefox/$(grep -m 1 Path $HOME/.mozilla/firefox/profiles.ini | cut -d'=' -f2)"
+  elif [ -d "$HOME/.config/mozilla/firefox" ]; then
+    PROFILE_DIR="$HOME/.config/mozilla/firefox/$(grep -m 1 Path $HOME/.config/mozilla/firefox/profiles.ini | cut -d'=' -f2)"
+  else
+    echo "Firefox profile directory not found"
+  fi
 else
   echo "Err: firefox not installed via snap or APT"
 fi
+
+cp $HOME/user.js/user.js "$PROFILE_DIR/user.js"
+cat $HOME/loadout/firefox/user-add.js >> "$PROFILE_DIR/user.js"
 
 if [ "${1:-}" = "css" ]; then
   mkdir -p "$PROFILE_DIR/chrome"
